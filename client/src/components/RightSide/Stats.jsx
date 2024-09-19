@@ -1,28 +1,47 @@
 import React from "react";
 
-function Stats() {
+function Stats({ pilData }) {
+  console.log(pilData);
+
   return (
     <div>
-      <div className="stats shadow">
+      <div className="stats shadow w-full">
         <div className="stat place-items-center">
           <div className="stat-title">Total Clicks</div>
-          <div className="stat-value">100</div>
+          <div className="stat-value">{pilData.totalClicks || 0}</div>
           <div className="stat-desc">From January 1st to February 1st</div>
         </div>
 
         <div className="stat place-items-center">
           <div className="stat-title">Status</div>
-          <div className="stat-value text-secondary">Active</div>
+          <div className="stat-value text-secondary">
+            {pilData.status ? "Active" : "Inactive"}
+          </div>
           <div className="stat-desc text-secondary">↗︎ 40 (2%)</div>
         </div>
 
         <div className="stat place-items-center">
           <div className="stat-title">Total Allowed Users</div>
-          <div className="stat-value">10</div>
+          <div className="stat-value">{pilData.allowedUser}</div>
           <div className="stat-desc">↘︎ 90 (14%)</div>
         </div>
       </div>
       <hr />
+      {/* Pil Data */}
+      <div className="flex justify-between my-5 gap-2">
+        <div className="card bg-base-100 w-full shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title">Input Data</h2>
+            <p>{pilData.input}</p>
+          </div>
+        </div>
+        <div className="card bg-base-100 w-full shadow-xl">
+          <div className="card-body ">
+            <h2 className="card-title">Masked Data</h2>
+            <p>{pilData.output}</p>
+          </div>
+        </div>
+      </div>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
