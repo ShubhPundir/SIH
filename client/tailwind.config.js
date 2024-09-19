@@ -2,10 +2,14 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+      },
+    },
   },
   daisyui: {
-    themes: ["light",'dark'],
+    themes: ["light"],
   },
   plugins: [require("daisyui")],
 };

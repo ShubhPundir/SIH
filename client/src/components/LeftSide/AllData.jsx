@@ -80,14 +80,15 @@ function AllData() {
     <div style={{ height: "calc(100vh - 20vh)" }} className="overflow-y-scroll">
       {pilData.map((item) => (
         <div key={item.date}>
-          <h1 className="text-sm my-1">{item.date}</h1>
-          <div className=" my-2 rounded-md font-">
+          <hr className="bg-black my-2 dark:bg-white h-[2px]"/>
+          <h1 className="text-sm my-2 font-semibold">{item.date}</h1>
+          <div className="rounded-md">
             {/* {console.log(item.items)} */}
             {item.items.map((pil) => (
               <button
                 onClick={() => handlePIL(pil.id)}
                 key={pil.id}
-                className="block cursor-pointer hover:bg-base-100 bg-base-200 text-xl dark:text-white text-black leading-tight font-semibold px-2 py-1 mx-2 my-1"
+                className="w-full  text-left block font-roboto cursor-pointer hover:bg-slate-300  text-base text-black leading-tight tracking-wider font-semibold my-2 py-2 px-2"
               >
                 {pil.title}
               </button>

@@ -6,8 +6,8 @@ function Output() {
     <div className="flex mt-8 px-8 flex-col min-h-screen items-center mx-auto">
         <Stats/>
       <div>
-        <h1 className="text-black dark:text-white text-3xl mb-2">Welcome to PIL Manager!</h1>
-        <p className="text-black dark:text-white mb-10">
+        <h1 className="text-black  text-3xl mb-2">Welcome to PIL Manager!</h1>
+        <p className="text-black mb-10">
           Securely manage your personal identification details. Store your phone
           numbers, licenses, and sensitive information safely with encryption.
           Easily access your data when needed, share it confidently with trusted

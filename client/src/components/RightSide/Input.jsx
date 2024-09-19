@@ -24,7 +24,7 @@ function Input() {
             placeholder="PIL details "
             name=""
             id=""
-            className="resize-none py-1 px-2 w-full outline-none max-h-32  text-xl"
+            className="resize-none bg-transparent py-1 px-2 w-full outline-none max-h-32  text-xl"
           />
         </form>
       </div>
