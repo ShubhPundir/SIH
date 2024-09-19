@@ -1,8 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { printData } from "../../store/slices/outputSlice";
+import { useState } from "react";
 
 function AllData() {
+  const [highlight, setHighlight] = useState();
   const handlePIL = (id) => {
+    setHighlight(id)
     dispatch(printData(id));
   };
   const pilData = useSelector((state) => state.pilData.pils);
@@ -20,7 +23,7 @@ function AllData() {
               <button
                 onClick={() => handlePIL(pil)}
                 key={pil.id}
-                className="w-full  text-left block font-roboto cursor-pointer hover:bg-slate-300  text-base text-black leading-tight tracking-wider font-semibold my-2 py-2 px-2"
+                className="w-full text-left block font-roboto cursor-pointer hover:bg-slate-300  text-base text-black leading-tight tracking-wider font-semibold my-2 py-2 px-2"
               >
                 {pil.title}
               </button>
