@@ -1,8 +1,11 @@
+import MainPage from "./pages/MainPage";
 
 function App() {
   return (
-    <div className="bg-slate-800">App</div>
-  )
+    <>
+      <MainPage />
+    </>
+  );
 }
 
-export default App
+export default App;
