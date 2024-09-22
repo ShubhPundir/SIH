@@ -1,29 +1,34 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaCheck } from "react-icons/fa6";
-import HighlightedText from "./HighlightedText";
+import HighlightedText from "../components/HighlightedText";
+import { useEffect } from "react";
 
 function Home() {
   const [data, setData] = useState("");
   const [edata, setEData] = useState(false);
+  const [loading, setLoading] = useState(false);
   function resetData() {
     setData("");
   }
+  const handleClick = () => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      setEData(true);
+    }, 1000);
+  };
 
   function handleOutput(e) {
     setData(e.target.value);
   }
 
   function displayData() {
-    setEData(true);
-    //     setEData(`MASKED DATA:
-    // My name is Sh** Pu*.
-    // 120 *******,
-    // Toll*******
-    // AADHAR: ****4644
-
-    // contact us at sh***.com`);
+    setTimeout(() => {
+      setLoading(true);
+    }, 1000);
   }
+  useEffect(() => {}, [loading]);
   return (
     <div className="w-full min-h-screen flex flex-col justify-center items-center bg-slate-100">
       <div className="flex gap-2 justify-center w-screen">
@@ -44,10 +49,17 @@ function Home() {
               Reset
             </button>
             <button
-              onClick={displayData}
-              className=" hover:text-white my-3 btn btn-outline btn-success  rounded-xl py-2 px-5 text-xl "
+              onClick={handleClick}
+              disabled={loading}
+              className={`my-3 btn btn-outline btn-success rounded-xl py-2 px-5 text-xl  hover:text-white ${
+                loading ? "bg-green-500 cursor-not-allowed" : ""
+              } relative`}
             >
-              Convert
+              {loading ? (
+                <span className="spinner">Loading...</span>
+              ) : (
+                "Generate"
+              )}
             </button>
           </div>
         </div>
@@ -74,42 +86,6 @@ function Home() {
             >
               Save
             </button>
-          </div>
-        </div>
-        {/* Tags */}
-        <div className="flex flex-col gap-2 bg-white rounded-md p-3">
-          <div>
-            <button className="btn btn-outline btn-sm w-full">TAGS</button>
-          </div>
-          <div className="flex  items-center gap-1 p-1 border rounded bg-red-500 hover:bg-red-300 cursor-pointer">
-            <span>
-              <FaCheck />
-            </span>
-            <span className="bg-white px-1 rounded-sm  w-full">Name</span>
-          </div>
-          <div className="w-full flex items-center gap-1 p-1 border rounded bg-yellow-500 hover:bg-red-300 cursor-pointer">
-            <span>
-              <FaCheck />
-            </span>
-            <span className="bg-white px-1 rounded-sm w-full">Mobile</span>
-          </div>
-          <div className="flex  items-center gap-1 p-1 border rounded bg-green-500 hover:bg-red-300 cursor-pointer">
-            <span>
-              <FaCheck />
-            </span>
-            <span className="bg-white px-1 rounded-sm w-full">Location</span>
-          </div>
-          <div className="flex  items-center gap-1 p-1 border rounded bg-pink-500 hover:bg-red-300 cursor-pointer">
-            <span>
-              <FaCheck />
-            </span>
-            <span className="bg-white px-1 rounded-sm w-full">IDENTIFICATION</span>
-          </div>
-          <div className="flex  items-center gap-1 p-1 border rounded bg-red-500 hover:bg-red-300 cursor-pointer">
-            <span>
-              <FaCheck />
-            </span>
-            <span className="bg-white px-1 rounded-sm w-full">DATE</span>
           </div>
         </div>
       </div>
