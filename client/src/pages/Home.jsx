@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaCheck } from "react-icons/fa6";
-import HighlightedText from "./HighlightedText";
+import HighlightedText from "../components/HighlightedText";
+import TextareaCard from "../components/TextareaCad";
 
 function Home() {
   const [data, setData] = useState("");
@@ -77,7 +78,7 @@ function Home() {
           </div>
         </div>
         {/* Tags */}
-        <div className="flex flex-col gap-2 bg-white rounded-md p-3">
+        {/* <div className="flex flex-col gap-2 bg-white rounded-md p-3">
           <div>
             <button className="btn btn-outline btn-sm w-full">TAGS</button>
           </div>
@@ -111,12 +112,14 @@ function Home() {
             </span>
             <span className="bg-white px-1 rounded-sm w-full">DATE</span>
           </div>
-        </div>
+        </div> */}
       </div>
       {/* Link to Dashboard */}
       <Link to={"/dashboard"} className="my-3 text-blue-500">
         Go To Dashboard
       </Link>
+      {/* <HighlightedText/> */}
+      {/* <TextareaCard/> */}
     </div>
   );
 }
