@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { printData } from "../../store/slices/outputSlice";
+import { printData } from "../store/slices/outputSlice";
 import { useState } from "react";
 
 function AllData() {
   const [highlight, setHighlight] = useState();
   const handlePIL = (id) => {
-    setHighlight(id)
+    setHighlight(id);
     dispatch(printData(id));
   };
   const pilData = useSelector((state) => state.pilData.pils);
@@ -18,7 +18,6 @@ function AllData() {
           <hr className="bg-black my-2 dark:bg-white h-[2px]" />
           <h1 className="text-sm my-2 font-semibold">{item.date}</h1>
           <div className="rounded-md">
-            {/* {console.log(item.items)} */}
             {item.items.map((pil) => (
               <button
                 onClick={() => handlePIL(pil)}

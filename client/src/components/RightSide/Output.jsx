@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import Stats from "./Stats";
 import { useSelector } from "react-redux";
+import Stats from "../Stats";
+import Dashboard from "../Dashboard";
 
 function Output() {
   const pilData = useSelector((state) => state.outputData.data);
@@ -19,7 +20,8 @@ function Output() {
           <span className="text-yellow-400">Let’s get started!</span>
         </div>
       ) : (
-        <Stats pilData={pilData} />
+        // <Stats pilData={pilData} />
+        <Dashboard />
       )}
     </div>
   );

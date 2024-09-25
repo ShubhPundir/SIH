@@ -6,7 +6,7 @@ function RightSide() {
   return (
     <div>
       <Output />
-      <Input />
+      {/* <Input /> */}
     </div>
   );
 }
