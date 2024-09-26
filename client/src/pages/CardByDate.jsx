@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// Import your images here or use URLs
+// Example placeholder images
 // import licenseImg from './assets/license.png';
 // import phoneImg from './assets/phone.png';
 // import socialMediaImg from './assets/social_media.png';
@@ -54,76 +54,108 @@ const data = {
           input: "Email: user@example.com",
           output: "Email: u***@example.com",
         },
-        // Add more items...
       ],
     },
-    // Add more date-based items...
   ],
 };
 
-// Function to map titles to images
+// Function to map titles to images (you can add images here)
 const getImageForTitle = (title) => {
   switch (title) {
     case "License":
-      return licenseImg;
+      return "https://via.placeholder.com/150"; // Example image URL
     case "Phone Number":
-      return phoneImg;
+      return "https://via.placeholder.com/150";
     case "Social Media":
-      return socialMediaImg;
+      return "https://via.placeholder.com/150";
     case "Email Address":
-      return emailImg;
-    // Add more cases for other titles and images...
+      return "https://via.placeholder.com/150";
     default:
-      return null; // Or provide a default image
+      return "https://via.placeholder.com/150"; // Fallback image
   }
 };
 
-const CardsByDate = () => {
-  const handleCard = (id) => {
+const CardsByDateWithToggleTable = () => {
+  const navigate = useNavigate();
+
+  const [visibleDetails, setVisibleDetails] = useState({});
+
+  // Toggle button handler
+  const handleToggle = (id) => {
+    setVisibleDetails((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id], // Toggle visibility for this item
+    }));
+  };
+  const handleCardClick = (id) => {
     console.log("data", id);
     navigate("/list");
   };
-  const navigate = useNavigate();
+
   return (
     <div className="container mx-auto py-8">
       {data.pils.map((section) => (
         <div key={section.date} className="mb-8">
           {/* Date Section */}
           <h2 className="text-2xl font-bold mb-4">{section.date}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Cards */}
-            {section.items.map((item) => (
-              <div
-                key={item.id}
-                onClick={() => handleCard(item.id)}
-                className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 hover:opacity-50 cursor-pointer"
-              >
-                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-600">
-                  Total Clicks: {item.totalClicks}
-                </p>
-                <p className="text-gray-600">
-                  Status:{" "}
-                  <span
-                    className={`${
-                      item.status ? "text-green-500" : "text-red-500"
-                    }`}
+          <div className="overflow-x-auto">
+            <table className="table-auto w-full border-collapse border border-gray-300">
+              <thead>
+                <tr>
+                  <th className="border border-gray-300 px-4 py-2">Title</th>
+                  <th className="border border-gray-300 px-4 py-2">
+                    Total Clicks
+                  </th>
+                  <th className="border border-gray-300 px-4 py-2">Status</th>
+                  <th className="border border-gray-300 px-4 py-2">Details</th>
+                  <th className="border border-gray-300 px-4 py-2">Image</th>
+                  <th className="border border-gray-300 px-4 py-2">Toggle</th>
+                </tr>
+              </thead>
+              <tbody>
+                {section.items.map((item) => (
+                  <tr
+                    key={item.id}
+                    className="hover:bg-slate-300 duration-150 cursor-pointer "
+                    onClick={handleCardClick}
                   >
-                    {item.status ? "Active" : "Inactive"}
-                  </span>
-                </p>
-                {/* Display output if active, else display input */}
-                <p className="mt-2">{item.status ? item.output : item.input}</p>
-                {/* Image */}
-                <div className="mt-4">
-                  <img
-                    // src={getImageForTitle(item.title)}
-                    alt={item.title}
-                    className="w-full h-40 object-cover rounded"
-                  />
-                </div>
-              </div>
-            ))}
+                    <td className="border border-gray-300 px-4 py-2">
+                      {item.title}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {item.totalClicks}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      <span
+                        className={
+                          item.status ? "text-green-500" : "text-red-500"
+                        }
+                      >
+                        {item.status ? "Active" : "Inactive"}
+                      </span>
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {visibleDetails[item.id] ? item.output : item.input}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2">
+                      <img
+                        src={getImageForTitle(item.title)}
+                        alt={item.title}
+                        className="w-16 h-16 object-cover rounded"
+                      />
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2 text-center">
+                      <input
+                        type="checkbox"
+                        className="toggle toggle-info"
+                        defaultChecked
+                      />
+                       */}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       ))}
@@ -131,4 +163,4 @@ const CardsByDate = () => {
   );
 };
 
-export default CardsByDate;
+export default CardsByDateWithToggleTable;

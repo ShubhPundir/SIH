@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import HeroImage from "../assets/HeroImage.jpg"
 
 const LandingPage = () => {
   return (
@@ -21,7 +22,7 @@ const LandingPage = () => {
       <section className="py-10">
         <div className="container mx-auto px-6">
           <img
-            src="https://via.placeholder.com/1200x500" // Placeholder image URL, replace with actual image
+            src={HeroImage} // Placeholder image URL, replace with actual image
             alt="Data Protection"
             className="w-full rounded-md shadow-lg"
           />
