@@ -58,7 +58,7 @@ const ViewDashboard = ({ items }) => {
   };
 
   return (
-    <div className="container mx-auto p-4 ">
+    <div className="container mx-auto p-4 bg-white/30 backdrop-blur-md">
       {/* <h1 className="text-2xl font-bold mb-4">User Dashboard</h1> */}
 
       {/* Dropdown Menu for selecting a role */}
