@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
 
 // Data object (as provided)
 const data = {
@@ -65,12 +66,15 @@ const HighlightedText = () => {
             <span className="ml-2 bg-slate-200 text-[9px] rounded-sm px-1 py-[1px]">
               {entry.value[1]}
             </span>
+              <span className="bg-red-400  h-[8px] text-[14px] w-[8px]  rounded-[50%]">x</span>
           </span>
         );
       } else {
         // If tag doesn't match, push the text without highlight
         highlightedElements.push(
-          <span key={entry.start}>{fullText.slice(entry.start, entry.end)}</span>
+          <span key={entry.start}>
+            {fullText.slice(entry.start, entry.end)}
+          </span>
         );
       }
 
@@ -109,6 +113,16 @@ const HighlightedText = () => {
             <span className="bg-white px-1 text-sm rounded-sm">{type}</span>
           </div>
         ))}
+         {/* <div
+            onClick={() => setSelectedTag(selectedTag === 'all' ? null : "all")} // Toggle tag on click
+            className={`flex items-center w-fit gap-1 p-1 border rounded cursor-pointer ${
+              selectedTag === "all" ? "opacity-100" : "opacity-60"
+            }`}
+          
+          >
+            <FaCheck />
+            <span className="bg-white px-1 text-sm rounded-sm">{type}</span>
+          </div> */}
       </div>
     );
   };

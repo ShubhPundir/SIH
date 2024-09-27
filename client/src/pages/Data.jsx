@@ -30,10 +30,10 @@ function Home() {
   }
   useEffect(() => {}, [loading]);
   return (
-    <div className="w-full min-h-screen flex flex-col justify-center items-center bg-slate-100">
+    <div className="w-full h-[90vh] flex flex-col justify-center items-center bg-slate-100">
       <div className="flex gap-2 justify-center w-screen">
         {/* Left Side */}
-        <div className="w-2/5 bg-white h-[400px] flex flex-col p-3 rounded-md">
+        <div className="w-2/5 bg-white h-[400px] flex flex-col p-3 rounded-md ">
           <span className="text-2xl ml-1 mb-1 font-roboto">Enter data </span>
           <textarea
             onChange={handleOutput}
@@ -74,18 +74,18 @@ function Home() {
             {edata ? <HighlightedText /> : null}
           </div>
           <div className="flex justify-between">
-            <button
+            {/* <button
               onClick={displayData}
               className="my-3 btn btn-outline btn-error rounded-xl py-2 px-5 text-xl  hover:text-white"
             >
               Regenerate
-            </button>
-            <button
-              onClick={displayData}
+            </button> */}
+            <Link
+              to={"/dashboard"}
               className=" hover:text-white my-3 btn btn-outline btn-info  rounded-xl py-2 px-5 text-xl "
             >
               Save
-            </button>
+            </Link>
           </div>
         </div>
       </div>

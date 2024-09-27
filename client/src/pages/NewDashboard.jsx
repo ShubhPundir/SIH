@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineClose } from "react-icons/md";
 import { HiMiniBars3 } from "react-icons/hi2";
 import { data } from "./jsonData.js";
@@ -10,21 +10,22 @@ import ViewDashboard from "../components/ViewDashboard.jsx";
 const NewDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
+  const [show, setShow] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
   const addTable = (data) => {
     setSelectedItem(data);
-    // console.log(data);
-
     setIsSidebarOpen((prev) => !prev);
   };
-
-  console.log(selectedItem);
+  useEffect(() => {
+    setSelectedItem(data[0]["items"][0]);
+    setShow(true)
+  }, []);
 
   return (
-    <div className="flex h-screen bg-slate-300 ">
+    <div className="flex min-h-screen  bg-slate-300 ">
       {/* Sidebar */}
       {isSidebarOpen && (
         <aside className="w-64 bg-gray-800 text-white p-4 transition-all duration-300">
@@ -32,12 +33,15 @@ const NewDashboard = () => {
           <ul>
             {data.map((item) =>
               item["items"].map((title) => (
-                <li className="mb-4" key={Math.random()}>
+                <li
+                  className="p-1 hover:bg-gray-900 rounded-md"
+                  key={Math.random()}
+                >
                   <button
                     onClick={() => addTable(title)}
                     className="hover:text-gray-400"
                   >
-                    {title.title}
+                    {title.id}
                   </button>
                 </li>
               ))
@@ -59,7 +63,17 @@ const NewDashboard = () => {
       </button>
 
       {/* Main content */}
-      {selectedItem && Object.keys(selectedItem).length === 0 ? (
+      <div className="flex bg-slate-300 flex-col justify-center items-center w-full h-full">
+        {/* ViewDashboard */}
+        {show  ? (
+          <ViewDashboard items={selectedItem["allowedUser"]} />
+        ) : null}
+        ;{/* Selected Item*/}
+        {selectedItem ? <Card data={selectedItem} /> : null}
+      </div>
+
+      {/*Optional Extra render */}
+      {/* {selectedItem && Object.keys(selectedItem).length === 0 ? (
         <main
           className={`flex-1 relative bg-gray-300  p-4 transition-all duration-300 ${
             isSidebarOpen ? "ml-0" : "ml-0"
@@ -68,13 +82,12 @@ const NewDashboard = () => {
           <section className="py-2">
             <div className="container mx-auto px-6 ">
               <img
-                src={HeroImage} // Placeholder image URL, replace with actual image
+                src={HeroImage} 
                 alt="Data Protection"
                 className="w-full rounded-md shadow-lg"
               />
             </div>
           </section>
-          {/* Hero Section */}
           <div className="absolute top-1/4 left-1/4 right-1/4  bg-white/30 backdrop-blur-md  p-4 rounded-lg shadow-md">
             <h1 className="text-2xl font-bold mb-4">
               Welcome to spane Dashboard!
@@ -87,14 +100,10 @@ const NewDashboard = () => {
         </main>
       ) : (
         <div className="flex bg-slate-300 flex-col justify-center items-center w-full h-full">
-          {/* ViewDashboard */}
           <ViewDashboard items={selectedItem["allowedUser"]} />
-          {/* Selected Item*/}
           <Card data={selectedItem} />
         </div>
-      )}
-
-      {/* {!selectedItem ?? console.log(selectedItem)} */}
+      )} */}
     </div>
   );
 };
