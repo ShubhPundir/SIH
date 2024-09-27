@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const ViewDashboard = ({ items }) => {
   // console.log(Object.keys(items));
@@ -47,6 +48,9 @@ const ViewDashboard = ({ items }) => {
   //   },
   // };
 
+  const param = useParams();
+  console.log(param);
+  
   const [data, setData] = useState({});
   const [selectedRole, setSelectedRole] = useState(""); // State to hold the selected role
 

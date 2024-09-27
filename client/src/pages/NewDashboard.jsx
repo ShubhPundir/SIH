@@ -7,6 +7,7 @@ import HeroImage from "../assets/HeroImage.jpg";
 
 import Card from "../components/Card.jsx";
 import ViewDashboard from "../components/ViewDashboard.jsx";
+import { Link } from "react-router-dom";
 const NewDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
@@ -21,7 +22,7 @@ const NewDashboard = () => {
   };
   useEffect(() => {
     setSelectedItem(data[0]["items"][0]);
-    setShow(true)
+    setShow(true);
   }, []);
 
   return (
@@ -65,45 +66,12 @@ const NewDashboard = () => {
       {/* Main content */}
       <div className="flex bg-slate-300 flex-col justify-center items-center w-full h-full">
         {/* ViewDashboard */}
-        {show  ? (
-          <ViewDashboard items={selectedItem["allowedUser"]} />
-        ) : null}
-        ;{/* Selected Item*/}
+        <Link to={"/view-audit/admin"}>Admin</Link>
+        {show ? <ViewDashboard items={selectedItem["allowedUser"]} /> : null} 
+        {/* Selected Item*/}
         {selectedItem ? <Card data={selectedItem} /> : null}
+        
       </div>
-
-      {/*Optional Extra render */}
-      {/* {selectedItem && Object.keys(selectedItem).length === 0 ? (
-        <main
-          className={`flex-1 relative bg-gray-300  p-4 transition-all duration-300 ${
-            isSidebarOpen ? "ml-0" : "ml-0"
-          }`}
-        >
-          <section className="py-2">
-            <div className="container mx-auto px-6 ">
-              <img
-                src={HeroImage} 
-                alt="Data Protection"
-                className="w-full rounded-md shadow-lg"
-              />
-            </div>
-          </section>
-          <div className="absolute top-1/4 left-1/4 right-1/4  bg-white/30 backdrop-blur-md  p-4 rounded-lg shadow-md">
-            <h1 className="text-2xl font-bold mb-4">
-              Welcome to spane Dashboard!
-            </h1>
-            <p className="text-gray-700">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi,
-              iste.
-            </p>
-          </div>
-        </main>
-      ) : (
-        <div className="flex bg-slate-300 flex-col justify-center items-center w-full h-full">
-          <ViewDashboard items={selectedItem["allowedUser"]} />
-          <Card data={selectedItem} />
-        </div>
-      )} */}
     </div>
   );
 };
