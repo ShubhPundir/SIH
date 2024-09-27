@@ -150,7 +150,6 @@ const CardsByDateWithToggleTable = () => {
                         className="toggle toggle-info"
                         defaultChecked
                       />
-                       */}
                     </td>
                   </tr>
                 ))}

@@ -5,7 +5,8 @@ import Data from "./pages/Data"
 // import UserDetailsPage from "./components/UserDetailPage";
 import Navbar from "./components/Navbar";
 import CardsByDate from "./pages/CardByDate";
-import UserDataComponent from "./pages/UserDataComponent";
+// import UserDataComponent from "./pages/UserDataComponent";
+import NewDashboard from "./pages/NewDashboard";
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/data" element={<Data />} />
-        <Route path="/dashboard" element={<CardsByDate />} />
-        <Route path="/list" element={<UserDataComponent />} />
+        {/* <Route path="/dashboard" element={<CardsByDate />} /> */}
+        <Route path="/dashboard" element={<NewDashboard />} />
+        {/* <Route path="/list" element={<UserDataComponent />} /> */}
         {/* <Route path="/testing" element={<UserDetailsPage />} /> */}
       </Routes>
     </BrowserRouter>

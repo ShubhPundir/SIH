@@ -8,7 +8,7 @@ const Navbar = () => {
     <nav className="bg-slate-800 text-white shadow-md">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
-        <div className="text-xl font-bold">
+        <div className="text-xl font-bold ml-7">
           <Link to="/">PrivacyShield</Link>
         </div>
 
