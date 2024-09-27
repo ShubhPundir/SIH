@@ -3,7 +3,7 @@ import { FaCheck } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 
 // Data object (as provided)
-const data = {
+const initialData = {
   "0,12": ["Shubh Pundir", "NAME"],
   "47,72": ["120 Deshparan Sasmal Road", "LOCATION 1"],
   "74,81": ["Tollygunge,Kolkata - 700033", "LOCATION 2"],
@@ -29,7 +29,15 @@ const colorMap = {
 };
 
 const HighlightedText = () => {
+  const [data, setData] = useState(initialData); // Store current data
   const [selectedTag, setSelectedTag] = useState(null); // Track selected tag
+
+  // Function to handle removing a highlighted item
+  const handleRemoveItem = (keyToRemove) => {
+    const updatedData = { ...data };
+    delete updatedData[keyToRemove];
+    setData(updatedData); // Update the state to reflect the removal
+  };
 
   const renderHighlightedText = () => {
     let highlightedElements = [];
@@ -38,7 +46,7 @@ const HighlightedText = () => {
     // Convert key object keys into an array of entries (start, end, [value, label])
     const entries = Object.entries(data).map(([key, value]) => {
       const [start, end] = key.split(",").map(Number); // Convert string range back to numbers
-      return { start, end, value };
+      return { start, end, value, key }; // Include the key in the entry
     });
 
     // Sort entries by their start position to ensure text is processed in order
@@ -52,12 +60,12 @@ const HighlightedText = () => {
         );
       }
 
-      // Only highlight if the tag matches or no tag is selected
-      if (!selectedTag || selectedTag === entry.value[1]) {
+      // Highlight the text if the selected tag matches, or if "All" is selected
+      if (!selectedTag || selectedTag === entry.value[1] || selectedTag === "ALL") {
         highlightedElements.push(
           <span
             key={entry.start}
-            className="text-sm rounded-sm px-2 border-[1px] border-black"
+            className="text-sm rounded-sm px-2 border-[1px] border-black relative"
             style={{
               backgroundColor: colorMap[entry.value[1]],
             }}
@@ -66,7 +74,13 @@ const HighlightedText = () => {
             <span className="ml-2 bg-slate-200 text-[9px] rounded-sm px-1 py-[1px]">
               {entry.value[1]}
             </span>
-              <span className="bg-red-400  h-[8px] text-[14px] w-[8px]  rounded-[50%]">x</span>
+            {/* Cross button to remove the item */}
+            <button
+              className="absolute top-0 right-0 text-red-500 text-xs hover:text-red-700"
+              onClick={() => handleRemoveItem(entry.key)}
+            >
+              <IoClose />
+            </button>
           </span>
         );
       } else {
@@ -97,6 +111,22 @@ const HighlightedText = () => {
 
     return (
       <div className="mb-4 flex items-center flex-wrap gap-2 text-sm">
+        {/* Add the "Select All" option */}
+        <div
+          onClick={() => setSelectedTag(selectedTag === "ALL" ? null : "ALL")}
+          className={`flex items-center w-fit gap-1 p-1 border rounded cursor-pointer ${
+            selectedTag === "ALL" ? "opacity-100" : "opacity-60"
+          }`}
+          style={{
+            backgroundColor: "lightyellow",
+            border: `1px solid black`,
+          }}
+        >
+          <FaCheck />
+          <span className="bg-white px-1 text-sm rounded-sm">ALL</span>
+        </div>
+
+        {/* Render other tags */}
         {Array.from(uniqueTypes).map((type) => (
           <div
             key={type}
@@ -113,16 +143,6 @@ const HighlightedText = () => {
             <span className="bg-white px-1 text-sm rounded-sm">{type}</span>
           </div>
         ))}
-         {/* <div
-            onClick={() => setSelectedTag(selectedTag === 'all' ? null : "all")} // Toggle tag on click
-            className={`flex items-center w-fit gap-1 p-1 border rounded cursor-pointer ${
-              selectedTag === "all" ? "opacity-100" : "opacity-60"
-            }`}
-          
-          >
-            <FaCheck />
-            <span className="bg-white px-1 text-sm rounded-sm">{type}</span>
-          </div> */}
       </div>
     );
   };
