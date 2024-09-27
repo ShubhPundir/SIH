@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ data }) => {
   return (
-    <div className="shadow-lg rounded-lg p-6 max-w-md mx-auto mt-2 bg-white/30 backdrop-blur-md">
+    <div className="shadow-lg rounded-lg p-6 w-fit mx-auto mt-2 bg-white/30 backdrop-blur-md">
       <h2 className="text-2xl font-bold mb-4 text-gray-800">{data.title}</h2>
       <p className="text-gray-600">
         <strong>ID:</strong> {data.id}

@@ -61,7 +61,7 @@ const NewDashboard = () => {
       {/* Main content */}
       {selectedItem && Object.keys(selectedItem).length === 0 ? (
         <main
-          className={`flex-1 relative bg-gray-100 p-4 transition-all duration-300 ${
+          className={`flex-1 relative bg-gray-300  p-4 transition-all duration-300 ${
             isSidebarOpen ? "ml-0" : "ml-0"
           }`}
         >
@@ -86,7 +86,7 @@ const NewDashboard = () => {
           </div>
         </main>
       ) : (
-        <div>
+        <div className="flex bg-slate-300 flex-col justify-center items-center w-full h-full">
           {/* ViewDashboard */}
           <ViewDashboard items={selectedItem["allowedUser"]} />
           {/* Selected Item*/}
