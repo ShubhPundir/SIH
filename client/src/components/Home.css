@@ -1,68 +1,81 @@
-/* Basic hero section setup */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+
+.font-tech {
+  font-family: 'Roboto', 'Montserrat', sans-serif;
+}
+
 .hero-section {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* Animation effects */
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
   }
-  
-  /* Animation effects */
-  @keyframes fadeInLeft {
-    0% {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  @keyframes fadeInDown {
-    0% {
-      opacity: 0;
-      transform: translateY(-50px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
   }
-  
-  @keyframes fadeInRight {
-    0% {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* Assign animation delays to elements */
-  .animate-fadeInLeft {
-    animation: fadeInLeft 1s ease forwards;
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
   }
-  
-  .animate-fadeInDown {
-    animation: fadeInDown 1.2s ease forwards;
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  .animate-fadeInRight {
-    animation: fadeInRight 1s ease forwards;
+}
+
+/* Assign animation delays to elements */
+.animate-fadeInLeft {
+  animation: fadeInLeft 1s ease forwards;
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 1.2s ease forwards;
+}
+
+.animate-fadeInRight {
+  animation: fadeInRight 1s ease forwards;
+}
+
+/* Responsiveness and layout optimization */
+@media (min-width: 768px) {
+  .hero-section {
+    padding: 0 4rem;
   }
-  
-  /* Responsiveness and layout optimization */
-  @media (min-width: 768px) {
-    .hero-section {
-      padding: 0 4rem;
-    }
-  }
-  
-  video {
-    max-height: 80vh;
-    width: 100%;
-    object-fit: cover;
-  }
-  
+}
+
+video {
+  max-height: 80vh;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Custom styling for the button */
+.bg-blue-600 {
+  background-color: #2563eb;
+}
+
+.bg-blue-700 {
+  background-color: #1d4ed8;
+}
