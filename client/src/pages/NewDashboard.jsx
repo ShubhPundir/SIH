@@ -65,11 +65,9 @@ const NewDashboard = () => {
 
       {/* Main content */}
       <div className="flex bg-slate-300 flex-col justify-center items-center w-full h-full">
-        {/* ViewDashboard */}
-        <Link to={"/view-audit/admin"}>Admin</Link>
-        {show ? <ViewDashboard items={selectedItem["allowedUser"]} /> : null} 
-        {/* Selected Item*/}
-        {selectedItem ? <Card data={selectedItem} /> : null}
+        {/* <Link to={"/view-audit/admin"}>Admin</Link> */}
+        {/* {show ? <ViewDashboard items={selectedItem["allowedUser"]} /> : null}  */}
+        {/* {selectedItem ? <Card data={selectedItem} /> : null} */}
         
       </div>
     </div>
