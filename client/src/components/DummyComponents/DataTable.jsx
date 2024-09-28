@@ -7,20 +7,20 @@ const dataSets = {
     categoryA: [
       {
         id: "1C5LDd5",
-        title: "Access Control",
+        title: "Name",
         totalClicks: 12,
         status: true,
-        input: "Access ID: ACC98765",
-        output: "Access ID: *****8765",
+        input: "Shubh Pundir",
+        output: "Sh**********dir",
         date: "2024-09-25",
       },
       {
         id: "1D6MEe6",
-        title: "User Permissions",
+        title: "Location 1",
         totalClicks: 20,
         status: false,
-        input: "Permission ID: PER54321",
-        output: "Permission ID: ****4321",
+        input: "120 Deshparan Sasmal Road",
+        output: "12******oad",
         date: "2024-09-26",
       },
     ],
@@ -134,7 +134,7 @@ const DataTable = () => {
           }`}
         >
           <h4 className="font-bold">Doc 1</h4>
-          <p>Access Control, Permissions, Logs</p>
+          <p>Name, Location</p>
         </div>
 
         {/* Card for Dataset 2 */}
@@ -162,9 +162,7 @@ const DataTable = () => {
 
       {/* Main content area */}
       <div className="w-3/4 p-4">
-        <h2 className="text-2xl font-bold mb-4">
-          Select Role: 
-        </h2>
+        <h2 className="text-2xl font-bold mb-4">Select Role:</h2>
         <select
           className="p-2 border border-gray-300 rounded-md mb-4"
           value={selectedCategory}
@@ -182,10 +180,10 @@ const DataTable = () => {
                 <th className="border px-4 py-2">ID</th>
                 <th className="border px-4 py-2">Title</th>
                 <th className="border px-4 py-2">Total Clicks</th>
-                <th className="border px-4 py-2">Status</th>
                 <th className="border px-4 py-2">Input</th>
                 <th className="border px-4 py-2">Output</th>
                 <th className="border px-4 py-2">Date</th>
+                <th className="border px-4 py-2">Status</th>
                 <th className="border px-4 py-2">Audits</th>
               </tr>
             </thead>
@@ -195,16 +193,26 @@ const DataTable = () => {
                   <td className="border px-4 py-2">{item.id}</td>
                   <td className="border px-4 py-2">{item.title}</td>
                   <td className="border px-4 py-2">{item.totalClicks}</td>
-                  <td className="border px-4 py-2">
-                    {item.status ? (
-                      <span className="text-green-600">Active</span>
-                    ) : (
-                      <span className="text-red-600">Inactive</span>
-                    )}
-                  </td>
                   <td className="border px-4 py-2">{item.input}</td>
                   <td className="border px-4 py-2">{item.output}</td>
                   <td className="border px-4 py-2">{item.date}</td>
+                  <td className="border px-4 py-2">
+                    <div className="form-control ">
+                      <label className="label cursor-pointer">
+                        {/* <span className="label-text">Revoke Status :</span> */}
+                        {item.status ? (
+                          <span className="text-green-600">Active</span>
+                        ) : (
+                          <span className="text-red-600">Inactive</span>
+                        )}
+                        <input
+                          type="checkbox"
+                          className="toggle toggle-accent"
+                          defaultChecked
+                        />
+                      </label>
+                    </div>
+                  </td>
                   <td className="border px-4 py-2">
                     <Link
                       className="bg-green-500 p-1 rounded-lg"
