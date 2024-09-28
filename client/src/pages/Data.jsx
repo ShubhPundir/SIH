@@ -81,7 +81,7 @@ function Home() {
               className=" hover:text-white my-3 btn btn-outline btn-info  rounded-xl py-2 px-5 text-xl "
             >
               Save
-            </Link>
+            </button>
           </div>
         </div>
       </div>
