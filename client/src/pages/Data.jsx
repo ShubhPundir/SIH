@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import HighlightedText from "../components/HighlightedText";
-import { useEffect } from "react";
 
 function Home() {
   const [data, setData] = useState("");
   const [edata, setEData] = useState(false);
   const [loading, setLoading] = useState(false);
-  function resetData() {
+
+  const resetData = () => {
     setData("");
-  }
+    setEData(false);
+  };
+
   const handleClick = () => {
     setLoading(true);
 
@@ -19,78 +21,73 @@ function Home() {
     }, 1000);
   };
 
-  function handleOutput(e) {
+  const handleOutput = (e) => {
     setData(e.target.value);
-  }
+  };
 
-  function displayData() {
-    setTimeout(() => {
-      setLoading(true);
-    }, 1000);
-  }
+  const displayData = () => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 1000);
+  };
+
   useEffect(() => {}, [loading]);
+
   return (
-    <div className="w-full min-h-screen flex flex-col justify-center items-center bg-slate-100">
-      <div className="flex gap-2 justify-center w-screen">
-        {/* Left Side */}
-        <div className="w-2/5 bg-white h-[400px] flex flex-col p-3 rounded-md">
-          <span className="text-2xl ml-1 mb-1 font-roboto">Enter data </span>
+    <div className="min-h-screen bg-gradient-to-r from-indigo-50 to-gray-100 flex flex-col items-center justify-center">
+      <div className="w-full max-w-6xl p-5 flex flex-col md:flex-row justify-between gap-10">
+        {/* Input Section */}
+        <div className="flex-1 bg-white shadow-lg rounded-xl p-6 transform transition duration-300">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-700">Enter Data</h2>
           <textarea
             onChange={handleOutput}
             value={data}
-            className="w-full h-[300px] text-xl resize-none outline-none border rounded-md p-3"
-            placeholder="..."
+            className="w-full h-64 p-4 border border-gray-300 rounded-lg resize-none outline-none focus:ring-2 focus:ring-indigo-400 text-lg"
+            placeholder="Type something..."
           ></textarea>
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-4">
             <button
               onClick={resetData}
-              className="my-3 btn btn-outline btn-error rounded-xl py-2 px-5 text-xl  hover:text-white"
+              className="py-2 px-6 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 transition"
             >
               Reset
             </button>
             <button
               onClick={handleClick}
               disabled={loading}
-              className={`my-3 btn btn-outline btn-success rounded-xl py-2 px-5 text-xl  hover:text-white ${
-                loading ? "bg-green-500 cursor-not-allowed" : ""
-              } relative`}
+              className={`py-2 px-6 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition ${
+                loading ? "cursor-not-allowed opacity-70" : ""
+              }`}
             >
-              {loading ? (
-                <span className="spinner">Loading...</span>
-              ) : (
-                "Generate"
-              )}
+              {loading ? "Generating..." : "Generate"}
             </button>
           </div>
         </div>
-        {/* Right Side */}
-        <div className="w-2/5 bg-white h-[400px] flex flex-col p-3 rounded-md">
-          <span className="text-2xl ml-1 mb-1 font-roboto">Generated Data</span>
-          <div
-            onChange={handleOutput}
-            className="w-full h-[300px] text-xl resize-none outline-none border rounded-md p-3"
-            placeholder="..."
-          >
-            {edata ? <HighlightedText /> : null}
+
+        {/* Output Section */}
+        <div className="flex-1 bg-white shadow-lg rounded-xl p-6 transform transition duration-300">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-700">Generated Data</h2>
+          <div className="w-full h-64 p-4 border border-gray-300 rounded-lg text-lg overflow-auto bg-gray-50">
+            {edata ? <HighlightedText /> : <span className="text-gray-400">No data generated yet</span>}
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-4">
             <button
               onClick={displayData}
-              className="my-3 btn btn-outline btn-error rounded-xl py-2 px-5 text-xl  hover:text-white"
+              className="py-2 px-6 bg-yellow-500 text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
             >
               Regenerate
             </button>
             <button
               onClick={displayData}
-              className=" hover:text-white my-3 btn btn-outline btn-info  rounded-xl py-2 px-5 text-xl "
+              className="py-2 px-6 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition"
             >
               Save
             </button>
           </div>
         </div>
       </div>
+
       {/* Link to Dashboard */}
-      <Link to={"/dashboard"} className="my-3 text-blue-500">
+      <Link to={"/dashboard"} className="mt-8 text-indigo-600 hover:text-indigo-800 transition">
         Go To Dashboard
       </Link>
     </div>

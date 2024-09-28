@@ -7,6 +7,7 @@ import HeroImage from "../assets/HeroImage.jpg";
 
 import Card from "../components/Card.jsx";
 import ViewDashboard from "../components/ViewDashboard.jsx";
+
 const NewDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
@@ -14,28 +15,24 @@ const NewDashboard = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
   const addTable = (data) => {
     setSelectedItem(data);
-    // console.log(data);
-
     setIsSidebarOpen((prev) => !prev);
   };
 
-  console.log(selectedItem);
-
   return (
-    <div className="flex h-screen bg-slate-300 ">
+    <div className="flex h-screen bg-gradient-to-br from-slate-200 to-slate-400">
       {/* Sidebar */}
       {isSidebarOpen && (
-        <aside className="w-64 bg-gray-800 text-white p-4 transition-all duration-300">
-          {/* <div className="text-2xl font-semibold mb-6">Sidebar</div> */}
+        <aside className="w-64 bg-gray-900 text-white p-4 transition-all duration-500 transform ease-in-out">
           <ul>
             {data.map((item) =>
               item["items"].map((title) => (
                 <li className="mb-4" key={Math.random()}>
                   <button
                     onClick={() => addTable(title)}
-                    className="hover:text-gray-400"
+                    className="hover:text-gray-300 transition-colors duration-300"
                   >
                     {title.title}
                   </button>
@@ -49,7 +46,7 @@ const NewDashboard = () => {
       {/* Toggle Button */}
       <button
         onClick={toggleSidebar}
-        className="fixed top-1 z-10 left-0 hover:bg-slate-600 p-2 rounded-lg"
+        className="fixed top-2 left-0 z-10 hover:bg-gray-700 p-2 rounded-lg transition-all duration-300"
       >
         {isSidebarOpen ? (
           <MdOutlineClose className="text-3xl text-white" />
@@ -58,43 +55,44 @@ const NewDashboard = () => {
         )}
       </button>
 
-      {/* Main content */}
-      {selectedItem && Object.keys(selectedItem).length === 0 ? (
+      {/* Main Content */}
+      {Object.keys(selectedItem).length === 0 ? (
         <main
-          className={`flex-1 relative bg-gray-100 p-4 transition-all duration-300 ${
+          className={`flex-1 relative p-4 transition-all duration-500 ease-in-out ${
             isSidebarOpen ? "ml-0" : "ml-0"
           }`}
         >
-          <section className="py-2">
-            <div className="container mx-auto px-6 ">
+          {/* Hero Section */}
+          <section className="py-10">
+            <div className="container mx-auto px-6">
               <img
-                src={HeroImage} // Placeholder image URL, replace with actual image
-                alt="Data Protection"
-                className="w-full rounded-md shadow-lg"
+                src={HeroImage}
+                alt="Dashboard Hero"
+                className="w-full rounded-lg shadow-xl transform transition-transform duration-700 hover:scale-105"
               />
             </div>
           </section>
-          {/* Hero Section */}
-          <div className="absolute top-1/4 left-1/4 right-1/4  bg-white/30 backdrop-blur-md  p-4 rounded-lg shadow-md">
-            <h1 className="text-2xl font-bold mb-4">
-              Welcome to spane Dashboard!
+
+          {/* Welcome Section */}
+          <div className="absolute top-1/3 left-1/4 right-1/4 bg-white/50 backdrop-blur-lg p-6 rounded-lg shadow-lg transition-opacity duration-1000 opacity-90 hover:opacity-100">
+            <h1 className="text-3xl font-extrabold mb-4 text-gray-900 tracking-wide">
+              Welcome to Spane Dashboard!
             </h1>
-            <p className="text-gray-700">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi,
-              iste.
+            <p className="text-gray-700 leading-relaxed">
+              Manage your data and insights effortlessly with our sleek and
+              user-friendly interface.
             </p>
           </div>
         </main>
       ) : (
-        <div>
-          {/* ViewDashboard */}
+        <div className="fade-in">
+          {/* View Dashboard */}
           <ViewDashboard items={selectedItem["allowedUser"]} />
-          {/* Selected Item*/}
+
+          {/* Selected Item Details */}
           <Card data={selectedItem} />
         </div>
       )}
-
-      {/* {!selectedItem ?? console.log(selectedItem)} */}
     </div>
   );
 };
