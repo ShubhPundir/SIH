@@ -37,28 +37,28 @@ function Home() {
   useEffect(() => {}, [loading]);
 
   return (
-    <div className="h-[90vh] bg-gradient-to-r from-indigo-50 to-gray-100 flex flex-col items-center justify-center">
-      <div className="w-full max-w-6xl p-5 flex flex-col md:flex-row justify-between gap-10">
+    <div className="h-[100vh] bg-gradient-to-r from-indigo-50 to-gray-100 flex flex-col items-center justify-center">
+      <div className="w-full max-w-7xl p-6 flex flex-col md:flex-row justify-between gap-10">
         {/* Input Section */}
-        <div className="flex-1 bg-white shadow-lg rounded-xl p-6 transform transition duration-300 ">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700">Enter Data</h2>
+        <div className="flex-1 bg-white shadow-lg rounded-xl p-8 transform transition duration-300 min-h-[30rem]">
+          <h2 className="text-3xl font-semibold mb-4 text-gray-700">Enter Data</h2>
           <textarea
             onChange={handleOutput}
             value={data}
-            className="w-full h-64 p-4 border border-gray-300 rounded-lg resize-none outline-none focus:ring-2 focus:ring-indigo-400 text-lg"
+            className="w-full h-72 p-4 border border-gray-300 rounded-lg resize-none outline-none focus:ring-2 focus:ring-indigo-400 text-lg"
             placeholder="Type something..."
           ></textarea>
-          <div className="flex justify-between mt-4">
+          <div className="flex justify-between mt-6">
             <button
               onClick={resetData}
-              className="py-2 px-6 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 transition"
+              className="py-3 px-8 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 transition"
             >
               Reset
             </button>
             <button
               onClick={handleClick}
               disabled={loading}
-              className={`py-2 px-6 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition ${
+              className={`py-3 px-8 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition ${
                 loading ? "cursor-not-allowed opacity-70" : ""
               }`}
             >
@@ -68,18 +68,18 @@ function Home() {
         </div>
 
         {/* Output Section */}
-        <div className="flex-1 bg-white shadow-lg rounded-xl p-6 transform transition duration-300">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700">Generated Data</h2>
-          <div className="w-full h-64 p-4 border border-gray-300 rounded-lg text-lg overflow-auto bg-gray-50">
+        <div className="flex-1 bg-white shadow-lg rounded-xl p-8 transform transition duration-300 min-h-[30rem]">
+          <h2 className="text-3xl font-semibold mb-4 text-gray-700">Generated Data</h2>
+          <div className="w-full h-72 p-4 border border-gray-300 rounded-lg text-lg overflow-auto bg-gray-50">
             {edata ? <HighlightedText /> : <span className="text-gray-400">No data generated yet</span>}
           </div>
 
-          <div className="flex justify-between mt-4 relative">
+          <div className="flex justify-between mt-6 relative">
             {/* Share Via Button with Dropdown */}
             <div className="relative">
               <button
                 onClick={toggleDropdown}
-                className="py-2 px-6 bg-yellow-500 text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
+                className="py-3 px-8 bg-yellow-500 text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
               >
                 Share Via
               </button>
@@ -94,7 +94,7 @@ function Home() {
 
             <button
               onClick={displayData}
-              className="py-2 px-6 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition"
+              className="py-3 px-8 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition"
             >
               Save
             </button>

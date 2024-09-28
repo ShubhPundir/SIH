@@ -6,9 +6,12 @@
 
 .hero-section {
   position: relative;
-  height: 100vh;
+  height: 75vh;
   display: flex;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem;
 }
 
 /* Animation effects */
@@ -58,17 +61,41 @@
   animation: fadeInRight 1s ease forwards;
 }
 
-/* Responsiveness and layout optimization */
+/* GIF overlay styling */
+.gif-overlay {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 20; /* Keep content above GIF */
+}
+
+/* Responsiveness */
 @media (min-width: 768px) {
   .hero-section {
+    height: 85vh;
     padding: 0 4rem;
+  }
+
+  .gif-overlay {
+    width: 40%; /* Adjust the GIF size on larger screens */
   }
 }
 
-video {
-  max-height: 80vh;
-  width: 100%;
-  object-fit: cover;
+@media (max-width: 767px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .gif-overlay {
+    width: 60%; /* Adjust the GIF size on smaller screens */
+  }
 }
 
 /* Custom styling for the button */

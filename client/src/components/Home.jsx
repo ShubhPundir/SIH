@@ -6,11 +6,11 @@ import "./Home.css"; // Assuming you have CSS for animations in this file
 function Home() {
   return (
     <div>
-      <section className="hero-section bg-white text-blue-600 py-20 relative overflow-hidden font-tech">
+      <section className="hero-section bg-white text-blue-600 py-20 relative overflow-hidden font-tech z-20">
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
           
           {/* Left side content */}
-          <div className="text-center md:text-left animate-fadeInLeft space-y-8">
+          <div className="text-center md:text-left animate-fadeInLeft space-y-8 z-30 relative">
             <h1 className="text-5xl font-bold mb-6 leading-tight">
               Protect Your Personal Data
             </h1>
@@ -28,10 +28,10 @@ function Home() {
           </div>
 
           {/* Right side GIF */}
-          <div className="relative flex justify-end items-center">
+          <div className="relative z-20 flex justify-center md:justify-end items-center">
             <img
-              className="w-full h-auto max-w-lg rounded-lg object-cover animate-fadeInRight"
-              src={hometry} // Correctly using the imported GIF file
+              className="gif-overlay w-4/5 h-auto max-w-lg rounded-lg object-cover animate-fadeInRight"
+              src={hometry}
               alt="Data Protection GIF"
             />
           </div>
