@@ -1,0 +1,68 @@
+/* Basic hero section setup */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Animation effects */
+  @keyframes fadeInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Assign animation delays to elements */
+  .animate-fadeInLeft {
+    animation: fadeInLeft 1s ease forwards;
+  }
+  
+  .animate-fadeInDown {
+    animation: fadeInDown 1.2s ease forwards;
+  }
+  
+  .animate-fadeInRight {
+    animation: fadeInRight 1s ease forwards;
+  }
+  
+  /* Responsiveness and layout optimization */
+  @media (min-width: 768px) {
+    .hero-section {
+      padding: 0 4rem;
+    }
+  }
+  
+  video {
+    max-height: 80vh;
+    width: 100%;
+    object-fit: cover;
+  }
+  
