@@ -6,6 +6,7 @@ function Home() {
   const [data, setData] = useState("");
   const [edata, setEData] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to manage dropdown visibility
 
   const resetData = () => {
     setData("");
@@ -14,7 +15,6 @@ function Home() {
 
   const handleClick = () => {
     setLoading(true);
-
     setTimeout(() => {
       setLoading(false);
       setEData(true);
@@ -28,6 +28,10 @@ function Home() {
   const displayData = () => {
     setLoading(true);
     setTimeout(() => setLoading(false), 1000);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   useEffect(() => {}, [loading]);
@@ -69,16 +73,28 @@ function Home() {
           <div className="w-full h-64 p-4 border border-gray-300 rounded-lg text-lg overflow-auto bg-gray-50">
             {edata ? <HighlightedText /> : <span className="text-gray-400">No data generated yet</span>}
           </div>
-          <div className="flex justify-between">
+
+          <div className="flex justify-between mt-4 relative">
+            {/* Share Via Button with Dropdown */}
+            <div className="relative">
+              <button
+                onClick={toggleDropdown}
+                className="py-2 px-6 bg-yellow-500 text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
+              >
+                Share Via
+              </button>
+              {isDropdownOpen && (
+                <div className="dropdown-content absolute bg-white border rounded-lg shadow-lg mt-2 w-40 z-10">
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-100">PrivacyShield</a>
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-100">Google Drive</a>
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-100">Copy</a>
+                </div>
+              )}
+            </div>
+
             <button
               onClick={displayData}
-              className="py-2 px-6 bg-yellow-500 text-white rounded-lg shadow-md hover:bg-yellow-600 transition"
-            >
-              Regenerate
-            </button>
-            <button
-              onClick={displayData}
-              className=" hover:text-white my-3 btn btn-outline btn-info  rounded-xl py-2 px-5 text-xl "
+              className="py-2 px-6 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition"
             >
               Save
             </button>
