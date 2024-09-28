@@ -8,6 +8,7 @@ import HeroImage from "../assets/HeroImage.jpg";
 import Card from "../components/Card.jsx";
 import ViewDashboard from "../components/ViewDashboard.jsx";
 import { Link } from "react-router-dom";
+import DataTable from "../components/DummyComponents/DataTable.jsx";
 const NewDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
@@ -65,6 +66,7 @@ const NewDashboard = () => {
 
       {/* Main content */}
       <div className="flex bg-slate-300 flex-col justify-center items-center w-full h-full">
+        <DataTable/>
         {/* <Link to={"/view-audit/admin"}>Admin</Link> */}
         {/* {show ? <ViewDashboard items={selectedItem["allowedUser"]} /> : null}  */}
         {/* {selectedItem ? <Card data={selectedItem} /> : null} */}

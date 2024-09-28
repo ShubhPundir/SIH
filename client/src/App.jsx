@@ -9,6 +9,7 @@ import CardsByDate from "./pages/CardByDate";
 import NewDashboard from "./pages/NewDashboard";
 import ViewDashboard from "./components/ViewDashboard";
 import { data } from "./pages/jsonData.js";
+import NetworkLogs from "./components/DummyComponents/NetworkLogs.jsx";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ function App() {
         {/* <Route path="/dashboard" element={<CardsByDate />} /> */}
         <Route path="/dashboard" element={<NewDashboard />} />
         <Route path="/view-audit/:role" element={<ViewDashboard items={data}/>} />
+        <Route path="/network-logs/:userId" element={<NetworkLogs/>} />
         {/* <Route path="/list" element={<UserDataComponent />} /> */}
         {/* <Route path="/testing" element={<UserDetailsPage />} /> */}
       </Routes>
